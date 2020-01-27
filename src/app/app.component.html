@@ -1,9 +1,8 @@
-<button (click)="getPosts()">Get posts</button>
+<!-- <button (click)="getPosts()">Get posts</button>
 <button (click)="getComments(1)">Get comments first post</button>
 
-
-<!-- <div>Posts: {{posts | json}}</div> -->
-<!-- <div>Comments: {{comments | json}}</div> -->
+<div>Posts: {{posts | json}}</div>
+<div>Comments: {{comments | json}}</div> -->
 
 
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
@@ -11,7 +10,7 @@
   <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
     <li class="mat-tree-node">
       <!-- use a disabled button to provide padding for tree leaf -->
-      <button mat-icon-button disabled></button>
+      <!-- <button mat-icon-button disabled></button> -->
       {{node.name}}
     </li>
   </mat-tree-node>
