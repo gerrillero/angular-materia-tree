@@ -18,9 +18,33 @@ export class AppComponent {
 
   treeControl = new NestedTreeControl<Post>(node => node.comments);
   dataSource = new MatTreeNestedDataSource<Post>();
+  filterData: Post[] = [];
+  termToSearch = '';
 
   constructor(private appService: AppService) {
     this.getPosts();
+  }
+
+  search() {
+    // const data = this.filterData.filter(post => post.title.includes(this.termToSearch)).
+    //   filter(item => item.comments.filter(comment => comment.title.includes(this.termToSearch)));
+
+    const data = [];
+
+    this.filterData.filter(post => {
+      if (post.title.includes(this.termToSearch)) {
+        data.push(post);
+      }
+      if (post.comments) {
+        post.comments.forEach(comment => {
+          if (comment.name.includes(this.termToSearch)) {
+            data.push(post);
+          }
+        });
+      }
+    });
+
+    console.log(data);
   }
 
   getPosts() {
@@ -40,6 +64,7 @@ export class AppComponent {
     ).subscribe(data => {
       console.log(data);
       this.posts = data;
+      this.filterData = this.posts.slice();
       this.dataSource.data = this.posts;
     });
   }

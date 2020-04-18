@@ -4,6 +4,8 @@
 <div>Posts: {{posts | json}}</div>
 <div>Comments: {{comments | json}}</div> -->
 
+<input type="text" [(ngModel)]="termToSearch" />
+<button (click)="search()">Search</button>
 
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
   <!-- This is the tree node template for leaf nodes -->
